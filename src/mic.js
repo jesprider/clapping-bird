@@ -22,11 +22,13 @@ const processAudioStream = (stream, cb) => {
     }
 
     const average = values / length;
-    cb(average);
+    if (cb) {
+      cb(average);
+    }
   };
 };
 
-export default async function getMedia(cb) {
+export default async function getMedia(cb = null) {
   let stream = null;
 
   try {
