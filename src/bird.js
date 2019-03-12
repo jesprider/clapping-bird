@@ -13,14 +13,28 @@ export default class Bird {
     this.gravity = 0.6;
     this.lift = -15;
     this.velocity = 0;
-  }
 
-  move(x, y) {
-    this.bird.x = x;
-    this.bird.y = y;
+    // TODO: move out
+    this.height = 600;
   }
 
   up() {
     this.velocity += this.lift;
+  }
+
+  update() {
+    this.velocity += this.gravity;
+    this.velocity *= 0.9;
+    this.bird.y += this.velocity;
+
+    if (this.bird.y > this.height) {
+      this.bird.y = this.height;
+      this.velocity = 0;
+    }
+
+    if (this.bird.y < 0) {
+      this.bird.y = 0;
+      this.velocity = 0;
+    }
   }
 }

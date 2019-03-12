@@ -10,11 +10,17 @@ window.onload = () => {
 
   app.stage.addChild(bird.bird);
 
+  let vol = 0;
+
   app.ticker.add((delta) => {
-    // console.log(delta);
+    if (vol > 10) {
+      bird.up();
+    }
+    bird.update();
   });
 
+
   getMedia((data) => {
-    // console.log(data);
+    vol = data;
   });
 };
