@@ -1,7 +1,7 @@
 import * as pixi from 'pixi.js';
 
 const SPEED = 2;
-const PIPE_WIDTH = 50;
+const PIPE_WIDTH = 75;
 const MINIMUM_WINDOW_HEIGHT = 100;
 
 // The maximum is exclusive and the minimum is inclusive
@@ -19,13 +19,13 @@ export default class Pipe {
 
     const ht = windowCenter - windowHeight / 2;
     const hb = canvasHeight - (windowCenter + windowHeight / 2);
-    const x = canvasWidth - 50;
+    const x = canvasWidth;
     const yt = 0;
     const yb = canvasHeight - hb;
 
     const pipe = new pixi.Graphics();
     pipe.lineStyle(0);
-    pipe.beginFill(0xDE3249, 1);
+    pipe.beginFill(0xFFFFFF, 1);
     pipe.drawRoundedRect(x, yt, PIPE_WIDTH, ht, 10);
     pipe.drawRoundedRect(x, yb, PIPE_WIDTH, hb, 10);
     pipe.endFill();
@@ -39,7 +39,7 @@ export default class Pipe {
   }
 
   get isOffscreen() {
-    if (this.pipe.x < -this.canvasWidth) {
+    if (this.pipe.x < -(this.canvasWidth + PIPE_WIDTH)) {
       return true;
     }
     return false;
