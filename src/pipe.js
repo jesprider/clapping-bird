@@ -26,8 +26,9 @@ export default class Pipe {
     const pipe = new pixi.Graphics();
     pipe.lineStyle(0);
     pipe.beginFill(0xFFFFFF, 1);
-    pipe.drawRoundedRect(x, yt, PIPE_WIDTH, ht, 10);
-    pipe.drawRoundedRect(x, yb, PIPE_WIDTH, hb, 10);
+    // -10/+10 for rounded borders compensation
+    pipe.drawRoundedRect(x, yt - 10, PIPE_WIDTH, ht, 10);
+    pipe.drawRoundedRect(x, yb + 10, PIPE_WIDTH, hb, 10);
     pipe.endFill();
 
     this.pipe = pipe;
