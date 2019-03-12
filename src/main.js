@@ -6,10 +6,12 @@ window.onload = () => {
   const app = new pixi.Application();
   document.body.appendChild(app.view);
 
-  const bird = new Bird(25, 25, 25);
+  const bird = new Bird({ x: 25, y: 25, radius: 25 });
+
   app.stage.addChild(bird.bird);
 
   app.ticker.add((delta) => {
+    // console.log(delta);
   });
 
   getMedia((data) => {
