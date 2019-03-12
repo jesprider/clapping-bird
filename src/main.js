@@ -7,7 +7,9 @@ window.onload = () => {
   const app = new pixi.Application();
   document.body.appendChild(app.view);
 
-  const bird = new Bird({ x: 25, y: 25, radius: 25 });
+  const bird = new Bird({
+    x: 25, y: 25, radius: 25, canvasHeight: app.view.height,
+  });
   const pipes = [];
   let vol = 0;
 
@@ -24,7 +26,9 @@ window.onload = () => {
     if (vol > 20) {
       bird.up();
     }
+
     bird.update();
+
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
 
