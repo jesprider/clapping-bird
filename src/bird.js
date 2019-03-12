@@ -1,7 +1,7 @@
 import * as pixi from 'pixi.js';
 
 export default class Bird {
-  constructor({ x, y, radius }) {
+  constructor({ x, y, radius, canvasHeight }) {
     const bird = new pixi.Graphics();
     bird.lineStyle(0);
     bird.beginFill(0xDE3249, 1);
@@ -9,13 +9,12 @@ export default class Bird {
     bird.endFill();
 
     this.bird = bird;
+    this.radius = radius;
+    this.height = canvasHeight;
 
     this.gravity = 0.6;
     this.lift = -15;
     this.velocity = 0;
-
-    // TODO: move out
-    this.height = 600;
   }
 
   up() {
@@ -27,8 +26,8 @@ export default class Bird {
     this.velocity *= 0.9;
     this.bird.y += this.velocity;
 
-    if (this.bird.y > this.height) {
-      this.bird.y = this.height;
+    if (this.bird.y > this.height - this.radius * 2) {
+      this.bird.y = this.height - this.radius * 2;
       this.velocity = 0;
     }
 
