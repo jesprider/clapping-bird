@@ -2,7 +2,7 @@ import * as pixi from 'pixi.js';
 
 const SPEED = 2;
 const PIPE_WIDTH = 75;
-const MINIMUM_WINDOW_HEIGHT = 100;
+const MINIMUM_WINDOW_HEIGHT = 150;
 
 // The maximum is exclusive and the minimum is inclusive
 const getRandomInt = (min, max) => {

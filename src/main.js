@@ -7,32 +7,35 @@ window.onload = () => {
   //
   // App creation
   const app = new pixi.Application();
+  const birdLayer = new pixi.Container();
+  const pipesLayer = new pixi.Container();
+  app.stage.addChild(pipesLayer);
+  app.stage.addChild(birdLayer);
   document.body.appendChild(app.view);
 
   //
   // Sliders handling
   const thresholdTopSlider = document.getElementById('thresholdTop');
-  const thresholdBottomSlider = document.getElementById('thresholdBottom');
+  // const thresholdBottomSlider = document.getElementById('thresholdBottom');
 
   let thresholdTop = thresholdTopSlider.valueAsNumber;
-  let thresholdBottom = thresholdBottomSlider.valueAsNumber;
-  let clapping = false;
+  // let thresholdBottom = thresholdBottomSlider.valueAsNumber;
 
   thresholdTopSlider.addEventListener('input', (event) => {
     thresholdTop = event.target.valueAsNumber;
   });
 
-  thresholdBottomSlider.addEventListener('input', (event) => {
-    thresholdBottom = event.target.valueAsNumber;
-  });
+  // thresholdBottomSlider.addEventListener('input', (event) => {
+  //   thresholdBottom = event.target.valueAsNumber;
+  // });
 
 
   //
   // Bird creation
   const bird = new Bird({
-    x: 25, y: 25, radius: 25, canvasHeight: app.view.height,
+    x: 45, y: 25, radius: 25, canvasHeight: app.view.height,
   });
-  app.stage.addChild(bird.bird);
+  birdLayer.addChild(bird.bird);
 
   //
   // Pipes
@@ -40,7 +43,7 @@ window.onload = () => {
   setInterval(() => {
     const pipe = new Pipe({ canvasWidth: app.view.width, canvasHeight: app.view.height });
     pipes.push(pipe);
-    app.stage.addChild(pipe.pipe);
+    pipesLayer.addChild(pipe.pipe);
   }, 2500);
 
   //
@@ -53,14 +56,8 @@ window.onload = () => {
   //
   // App update callback
   app.ticker.add(() => {
-    console.log(vol)
-    if (vol > thresholdTop && !clapping) {
-      bird.up();
-      clapping = true;
-    }
-
-    if (vol < thresholdBottom) {
-      clapping = false;
+    if (vol > thresholdTop) {
+      bird.up(vol);
     }
 
     bird.update();
