@@ -6,7 +6,7 @@ import Pipe from './pipe';
 window.onload = () => {
   //
   // App creation
-  const app = new pixi.Application();
+  const app = new pixi.Application({ width: 1020, height: 600 });
   const birdLayer = new pixi.Container();
   const pipesLayer = new pixi.Container();
   app.stage.addChild(pipesLayer);

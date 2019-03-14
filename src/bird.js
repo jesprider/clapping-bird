@@ -13,12 +13,13 @@ export default class Bird {
     this.height = canvasHeight;
 
     this.gravity = 0.6;
-    this.lift = -15;
+    this.lift = -1;
     this.velocity = 0;
   }
 
-  up() {
-    this.velocity += this.lift;
+  up(volume) {
+    console.log(volume / 100)
+    this.velocity -= volume / 100;
   }
 
   update() {
